@@ -1,1 +1,3 @@
-# edu22_django
+# start edu22_django
+
+django==4.1
