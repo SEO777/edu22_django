@@ -37,3 +37,4 @@ class RegisterForm(UserCreationForm):
 
 class LoginForm(forms.Form):
     # TODO: 2. login 할 때 form을 활용해주세요
+    sss = 1

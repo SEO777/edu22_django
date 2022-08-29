@@ -28,7 +28,8 @@ def register_view(request):
 def login_view(request):
     if request.method == "POST":
         # TODO: 1. /login로 접근하면 로그인 페이지를 통해 로그인이 되게 해주세요
-        # TODO: 2. login 할 때 form을 활용해주세요						
+        # TODO: 2. login 할 때 form을 활용해주세요
+        sss = 1
     else:
         form = LoginForm()
     return render(request, "login.html", {"form": form})
