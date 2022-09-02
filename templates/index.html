@@ -1,16 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}index{% endblock %}
+{% block content %}
 {% comment %} TODO: 5. base.html 템플릿을 만들어 모든 페이지에서 상속받아 보여주세요 {% endcomment %}
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  {% comment %} TODO: 6. bootstrap 스타일을 적용해주세요	 {% endcomment %}
-</head>
-
-<body>
-  <div class="container">
-      {% comment %} TODO: 4. /index 페이지에는 로그인 한 유저 이름을 출력해야 합니다. ex) hello, 홍길동 {% endcomment %}
-    Hello, world
-  </div>
-</body>
-
-</html>
+<div class="content d-flex justify-content-center text-center flex-wrap">
+    <div class="container">
+        <!-- TODO: NOTICE) (SEO) base.html 의 <main> content 로 적절하게맞게 수정 -->
+        <h3>Welcome to Main Page for Final Project!</h3>
+        {% comment %} TODO: 4. /index 페이지에는 로그인 한 유저 이름을 출력해야 합니다. ex) hello, 홍길동 {% endcomment %}
+        {% if user.is_authenticated %}
+        <h3>Logined by <span style="color: red">{{user.username}}</span></h3>
+        <br>
+        <p>
+            <a href="{% url 'logout' %}">로그아웃</a>
+            <span>&nbsp &nbsp</span>
+            <a href="{% url 'user_list' %}">유저목록</a>
+        </p>
+        {% else %}
+        <h3>Please Login or Register</h3>
+        <br>
+        <p>
+            <a href="{% url 'login' %}" class="">로그인</a>
+            <span>&nbsp &nbsp</span>
+            <a href="{% url 'register' %}">회원가입</a>
+            <span>&nbsp &nbsp</span>
+            <a href="{% url 'user_list' %}">유저목록</a>
+        </p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

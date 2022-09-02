@@ -1,0 +1,5 @@
+username | email                     | password
+admin     | admin@admin.com    | admin
+admin0    | admin0@admin.com  | qwerty!@
+admin1    | admin1@admin.com  | qwerty!@
+admin2    | admin2@admin.com  | qwerty!@

@@ -25,13 +25,9 @@ SECRET_KEY = "django-insecure-036*t#yfhnc%#sqtt$n5162)jz=i32(6eb*-zwniv%+1x06lf=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-INTERNAL_IPS = ['127.0.0.1', 'localhost']  # TODO: NOTICE) (SEO) django-debug-toolbar 구동
-
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = "user.User"
-
-LOGIN_URL = '/login'  # TODO: NOTICE) (SEO) @login_required 활용 경우, settings.py 에서 LOGIN_URL = '/login' 추가
 
 # Application definition
 
@@ -42,10 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "user.apps.UserConfig",     # TODO: NOTICE) (SEO) 수정
-    # "user",
-    'debug_toolbar',            # TODO: NOTICE) (SEO) django-debug-toolbar 구동
-    'django_seed'               # TODO: NOTICE) (SEO) user 관련 mock 데이터 추가
+    "user",
 ]
 
 MIDDLEWARE = [
@@ -56,7 +49,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'debug_toolbar.middleware.DebugToolbarMiddleware'  # TODO: NOTICE) (SEO) django-debug-toolbar 구동
 ]
 
 ROOT_URLCONF = "final_project.urls"
@@ -113,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'ko-kr'  # "en-us"  # TODO: NOTICE) (SEO) 한글
+LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
 
