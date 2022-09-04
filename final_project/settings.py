@@ -15,25 +15,41 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+# TODO: NOTICE) 배포 과정
+# ----------------------------------------------------------------------#
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-036*t#yfhnc%#sqtt$n5162)jz=i32(6eb*-zwniv%+1x06lf="
+# # ----------------------------------------------------------------------#
+# # TODO: NOTICE) (SEO) (참조) Django - settings.py 의 SECRET_KEY 변경 및 분리하기 (https://wayhome25.github.io/django/2017/07/11/django-settings-secret-key/)
+# import string, random
+# # Get ascii Characters numbers and punctuation (minus quote characters as they could terminate string).
+# chars = ''.join([string.ascii_letters, string.digits, string.punctuation]).replace('\'', '').replace('"', '').replace('\\', '')
+# SECRET_KEY = ''.join([random.SystemRandom().choice(chars) for i in range(50)])
+# print(SECRET_KEY)
+# # ----------------------------------------------------------------------#
+SECRET_KEY = "$b+!L|*?v,7QF!JfFAMKD#C=%F4$No=%z>V@TdY.;5%W_WBg>!"
+# SECRET_KEY = "django-insecure-036*t#yfhnc%#sqtt$n5162)jz=i32(6eb*-zwniv%+1x06lf="
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+ENV = os.environ.get('DJANGO_ENV', 'dev')  # 'DJANGO_ENV' 가 없으면 'dev' 를 리턴
+if ENV == 'dev':
+    DEBUG = True
+    ALLOWED_HOSTS = []     # DEBUG: True 경우, []
+else:
+    DEBUG = False
+    ALLOWED_HOSTS = ['*']  # DEBUG: False 경우, 모든 도메인 허용
 
-INTERNAL_IPS = ['127.0.0.1', 'localhost']  # TODO: NOTICE) (SEO) django-debug-toolbar 구동
-
-ALLOWED_HOSTS = []
-
-AUTH_USER_MODEL = "user.User"
-
-LOGIN_URL = '/login'  # TODO: NOTICE) (SEO) @login_required 활용 경우, settings.py 에서 LOGIN_URL = '/login' 추가
+# print(f'SECRET_KEY: {SECRET_KEY}')
+# print(f'DEBUG: {DEBUG}')
+# print(f'ALLOWED_HOSTS: {ALLOWED_HOSTS}')
+# ----------------------------------------------------------------------#
 
 # Application definition
+AUTH_USER_MODEL = "user.User"
+INTERNAL_IPS = ['127.0.0.1', 'localhost']  # TODO: NOTICE) (SEO) django-debug-toolbar 구동
+LOGIN_URL = '/login'  # TODO: NOTICE) (SEO) @login_required 활용 경우, settings.py 에서 LOGIN_URL = '/login' 추가
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -44,9 +60,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "user.apps.UserConfig",     # TODO: NOTICE) (SEO) 수정
     # "user",
-    'debug_toolbar',            # TODO: NOTICE) (SEO) django-debug-toolbar 구동
-    'django_seed'               # TODO: NOTICE) (SEO) user 관련 mock 데이터 추가
-]
+    ]
+if DEBUG:
+    INSTALLED_APPS += [
+        'debug_toolbar',            # TODO: NOTICE) (SEO) django-debug-toolbar 구동
+        'django_seed',              # TODO: NOTICE) (SEO) user 관련 mock 데이터 추가
+        ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -56,8 +75,11 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'debug_toolbar.middleware.DebugToolbarMiddleware'  # TODO: NOTICE) (SEO) django-debug-toolbar 구동
 ]
+if DEBUG:
+    MIDDLEWARE += [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',  # TODO: NOTICE) (SEO) django-debug-toolbar 구동
+        ]
 
 ROOT_URLCONF = "final_project.urls"
 
