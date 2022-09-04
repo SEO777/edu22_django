@@ -36,11 +36,10 @@ SECRET_KEY = "$b+!L|*?v,7QF!JfFAMKD#C=%F4$No=%z>V@TdY.;5%W_WBg>!"
 ENV = os.environ.get('DJANGO_ENV', 'dev')  # 'DJANGO_ENV' 가 없으면 'dev' 를 리턴
 if ENV == 'dev':
     DEBUG = True
-    ALLOWED_HOSTS = []     # DEBUG: True 경우, []
 else:
     DEBUG = False
-    ALLOWED_HOSTS = ['*']  # DEBUG: False 경우, 모든 도메인 허용
 
+ALLOWED_HOSTS = ["*"]  # DEBUG: False 경우, []: 모든 도메인 허용
 # print(f'SECRET_KEY: {SECRET_KEY}')
 # print(f'DEBUG: {DEBUG}')
 # print(f'ALLOWED_HOSTS: {ALLOWED_HOSTS}')
@@ -61,11 +60,11 @@ INSTALLED_APPS = [
     "user.apps.UserConfig",     # TODO: NOTICE) (SEO) 수정
     # "user",
     ]
-if DEBUG:
-    INSTALLED_APPS += [
-        'debug_toolbar',            # TODO: NOTICE) (SEO) django-debug-toolbar 구동
-        'django_seed',              # TODO: NOTICE) (SEO) user 관련 mock 데이터 추가
-        ]
+# if DEBUG:
+#     INSTALLED_APPS += [
+#         'debug_toolbar',            # TODO: NOTICE) (SEO) django-debug-toolbar 구동
+#         'django_seed',              # TODO: NOTICE) (SEO) user 관련 mock 데이터 추가
+#         ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -76,10 +75,10 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-if DEBUG:
-    MIDDLEWARE += [
-        'debug_toolbar.middleware.DebugToolbarMiddleware',  # TODO: NOTICE) (SEO) django-debug-toolbar 구동
-        ]
+# if DEBUG:
+#     MIDDLEWARE += [
+#         'debug_toolbar.middleware.DebugToolbarMiddleware',  # TODO: NOTICE) (SEO) django-debug-toolbar 구동
+#         ]
 
 ROOT_URLCONF = "final_project.urls"
 
